@@ -5,15 +5,13 @@ const app = express();
 const urlparser = require('url');
 const dns = require('dns');
 const { MongoClient } = require('mongodb');
-const { hostname } = require('os');
-const { urlencoded } = require('body-parser');
+
 
 //connection
-const conn = "mongodb+srv://m7mmd4500:8uLGuhRxPDZntmch@cluster0.0izkzz6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const conn = process.env.db_conn;
 const client = new MongoClient(conn);
 const db = client.db('urlshortner');
 const urls = db.collection('urls');
-
 
 const port = process.env.PORT || 3000;
 app.use(cors());
